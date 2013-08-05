@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Alert Call</string>
+    <string name="add_rule_button">Add</string>
+    <string name="dummy_content">RULES\nPAGE</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="rule_contact_name">"Name: "</string>
+    <string name="rule_message">"Message: "</string>
+    <string name="rule_phone_number">Number: </string>
+    <string name="repeat_check">Repeat Rule?</string>
+    <string name="title_activity_list_view_example">ListViewExampleActivity</string>
+    <string name="browse_button">Browse</string>
+
+</resources>
