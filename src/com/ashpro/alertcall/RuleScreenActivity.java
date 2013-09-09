@@ -118,16 +118,20 @@ public class RuleScreenActivity extends MainActivity {
 		Log.i("RuleScreenActivity", "RuleScreenActivity onActivityResult() called..");
 
 		if (requestCode == 1) {
-
+// TODO: 			
 			if(resultCode == RESULT_OK){      
 				String ruleContactName=data.getStringExtra("ruleContactName");          
 				String ruleMessage=data.getStringExtra("ruleMessage");
 				Long ruleNumber=Long.parseLong(data.getStringExtra("ruleNumber"));
 				boolean ruleCheckRepeat = data.getBooleanExtra("ruleRepeat", false);
+				
+				int pushNotificationCheck = (data.getBooleanExtra("rulePush", true)?1:0);
+				int textCheck = (data.getBooleanExtra("rulePop", false)?1:0);
+				
 				int rep = (ruleCheckRepeat?1:0) ;
 				
 				// Add the rule to list
-				addRule(ruleContactName, ruleNumber.toString() , ruleMessage, rep);
+				addRule(ruleContactName, ruleNumber.toString() , ruleMessage, rep, pushNotificationCheck, textCheck);
 				/*
 				// Create the rule and add it to arrayadapter here
 				RuleRow rulerow = datasource.createRuleRow(ruleContactName, ruleNumber.toString(), ruleMessage, false);
@@ -147,11 +151,11 @@ public class RuleScreenActivity extends MainActivity {
 		}
 	}
 
-	public void addRule(String ruleContactName, String ruleNumber, String ruleMessage, int rep)
+	public void addRule(String ruleContactName, String ruleNumber, String ruleMessage, int rep, int push, int popup)
 	{
 		Log.i("RuleScreenActivity", "RuleScreenActivity addRule() called..");
 		// Create the rule and add it to arrayadapter here
-		RuleRow rulerow = datasource.createRuleRow(ruleContactName, ruleNumber, ruleMessage, rep);
+		RuleRow rulerow = datasource.createRuleRow(ruleContactName, ruleNumber, ruleMessage, rep, push, popup);
 		RuleList.add(rulerow);
 
 		// refresh your view here			     

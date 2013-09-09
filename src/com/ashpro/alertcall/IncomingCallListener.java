@@ -101,28 +101,34 @@ public class IncomingCallListener extends BroadcastReceiver {
 					toastText = RuleList.get(i).rule.reminderMessage;
 					// Toast reminderToast = Toast.makeText(context, toastText, toastDuration);
 					// reminderToast.show();
-					
+
 					// uncomment the following line to configure toast reminder as well
-					// MainActivity.makeToast(toastText);
-					Log.i(LOG_TAG, "Toast sent for " + incomingNumber);
+					if(RuleList.get(i).rule.popupText)
+					{
+						MainActivity.makeToast(toastText);
+						Log.i(LOG_TAG, "Toast sent for " + incomingNumber);
+					}
 
-					Notification reminder = new Notification.Builder(context)
-					.setContentTitle(RuleList.get(i).rule.reminderMessage)
-					.setTicker(RuleList.get(i).rule.reminderMessage)
-					.setContentText("Alert Call Alert!")
-					.setSmallIcon(android.R.drawable. ic_dialog_info )
-					.setAutoCancel(true)
-					.setContentIntent(contentIntent)
-					.setWhen(System.currentTimeMillis())
-					.build();
+					if(RuleList.get(i).rule.pushNotification)
+					{
 
-					notificationManager.notify(i,reminder);
-					Log.i(LOG_TAG, "Notification reminder sent for " + incomingNumber);
-					
+						Notification reminder = new Notification.Builder(context)
+						.setContentTitle(RuleList.get(i).rule.reminderMessage)
+						.setTicker(RuleList.get(i).rule.reminderMessage)
+						.setContentText("Alert Call Alert!")
+						.setSmallIcon(android.R.drawable. ic_dialog_info )
+						.setAutoCancel(true)
+						.setContentIntent(contentIntent)
+						.setWhen(System.currentTimeMillis())
+						.build();
+
+						notificationManager.notify(i,reminder);
+						Log.i(LOG_TAG, "Notification reminder sent for " + incomingNumber);
+					}
 					// if rule has the recurrence flag as false, then delete it 
 					if(RuleList.get(i).rule.recurrence == false)
 					{
-							indexToDelete.add(i);
+						indexToDelete.add(i);
 					}
 				}
 			}
@@ -151,9 +157,11 @@ public class IncomingCallListener extends BroadcastReceiver {
 		if (TelephonyManager.EXTRA_STATE_OFFHOOK.equals(state)) {
 			// active
 			Log.i(LOG_TAG, "OFFHOOK");
+			Log.i(LOG_TAG, "OFFHOOK" + intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER)); 
 		}
 		if (TelephonyManager.EXTRA_STATE_IDLE.equals(state)) {
 			Log.i(LOG_TAG, "IDLE number");
+			Log.i(LOG_TAG, "OFFHOOK" + intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER));
 		}
 	}
 }

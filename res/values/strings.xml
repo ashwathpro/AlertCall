@@ -14,5 +14,7 @@
     <string name="repeat_check">Repeat Rule?</string>
     <string name="title_activity_list_view_example">ListViewExampleActivity</string>
     <string name="browse_button">Browse</string>
+    <string name="notification">Notification</string>
+    <string name="text">Popup text</string>
 
 </resources>

@@ -69,8 +69,11 @@ public class CreateRuleActivity extends MainActivity {
 		EditText ruleMessageText = ((EditText)findViewById(R.id.ruleMessageValue));
 		EditText ruleNumberText = ((EditText)findViewById(R.id.ruleContactNumberValue));
 		CheckBox checkRepeat = (CheckBox)findViewById(R.id.repeatCheckBox);
+		CheckBox notificationboxnotification_checkbox = (CheckBox)findViewById(R.id.notification_checkbox);
+		CheckBox text_checkbox = (CheckBox)findViewById(R.id.text_checkbox);
 		String ruleMessage = "",ruleContactName = "", ruleNumber = "";
 		boolean ruleRepeat = false;
+		boolean rulePop = false, rulePush = true;
 		String ruleNum = "";
 		
 		if(!isEmpty(ruleMessageText) && !isEmpty(ruleNumberText))
@@ -99,11 +102,28 @@ public class CreateRuleActivity extends MainActivity {
 			return;
 		}
 		
+		rulePop = text_checkbox.isChecked();
+		rulePush = notificationboxnotification_checkbox.isChecked();
+		
+		if(rulePop || rulePush)
+		{	
+			ruleRepeat = checkRepeat.isChecked();
+            Log.i("CreateRule", "Rule rulePop: " + (rulePop?"true":"false" + "Rule rulePush: " + (rulePush?"true":"false")));
+		}
+		else
+		{
+			makeToast("Please select atleast one method of notification");
+			setResult(RESULT_CANCELED,returnIntent); 
+			return;
+		}
+		
 		// prepare the intent for returning the result
 		returnIntent.putExtra("ruleContactName",ruleContactName);
 		returnIntent.putExtra("ruleMessage",ruleMessage);
 		returnIntent.putExtra("ruleNumber",ruleNum);
 		returnIntent.putExtra("ruleRepeat",ruleRepeat);
+		returnIntent.putExtra("rulePush",rulePush);
+		returnIntent.putExtra("rulePop",rulePop);
 		setResult(RESULT_OK,returnIntent);     
 		// RuleListDbOpenHelper rdb = new RuleListDbOpenHelper(contextMainActivity);
 		// rdb.addRule(1, ruleContactName, ruleNum, ruleMessage, false);

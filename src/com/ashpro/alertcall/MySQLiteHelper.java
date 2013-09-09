@@ -17,13 +17,17 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 	public static final String CONTACT_NUMBER = "CONTACT_NUMBER";
 	public static final String RULE_MESSAGE= "RULE_MESSAGE";
 	public static final String RULE_REPEATS = "RULE_REPEATS";
+	public static final String PUSH_NOTIFICATION = "PUSH_NOTIFICATION";
+	public static final String POPUP_TEXT = "POPUP_TEXT";
 
 	// Database creation sql statement
 	private static final String RULE_TABLE_CREATE ="create table " + RULE_TABLE_NAME + "(" + 
             RULE_ID + " integer primary key autoincrement, " +
             CONTACT_NAME + " text, " +
             CONTACT_NUMBER + " integer not null, " +
-            RULE_REPEATS + " integer, " + 
+            RULE_REPEATS + " integer, " +
+            PUSH_NOTIFICATION + " integer, " + 
+            POPUP_TEXT + " integer, " + 
             RULE_MESSAGE + " text" + 
             		");";
 

@@ -28,16 +28,6 @@
         android:onClick="submitRule"
         android:text="@string/add_rule_button" />
 
-    <CheckBox
-        android:id="@+id/repeatCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/create_rule_submit_button"
-        android:layout_alignLeft="@+id/ruleContactNumberValue"
-        android:layout_marginBottom="48dp"
-        android:checked="false"
-        android:text="@string/repeat_check" />
-
     <TextView
         android:id="@+id/ruleContactName"
         android:layout_width="wrap_content"
@@ -94,5 +84,35 @@
         android:layout_marginTop="20dp"
         android:onClick="pickContact"
         android:text="@string/browse_button" />
+
+    <CheckBox
+        android:id="@+id/repeatCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/create_rule_submit_button"
+        android:layout_marginBottom="57dp"
+        android:layout_toRightOf="@+id/ruleMessage"
+        android:checked="false"
+        android:text="@string/repeat_check" />
+
+    <CheckBox
+        android:id="@+id/notification_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/create_rule_submit_button"
+        android:layout_alignLeft="@+id/create_rule_submit_button"
+        android:layout_marginBottom="14dp"
+        android:checked="true"
+        android:text="@string/notification" />
+
+    <CheckBox
+        android:id="@+id/text_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/notification_checkbox"
+        android:layout_alignBottom="@+id/notification_checkbox"
+        android:layout_alignRight="@+id/create_rule_submit_button"
+        android:layout_marginRight="40dp"
+        android:text="@string/text" />
 
 </RelativeLayout>

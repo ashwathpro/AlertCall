@@ -15,7 +15,9 @@ public class RulesDataSource {
 				  MySQLiteHelper.CONTACT_NAME,
 				  MySQLiteHelper.RULE_MESSAGE,
 				  MySQLiteHelper.CONTACT_NUMBER,
-				  MySQLiteHelper.RULE_REPEATS };
+				  MySQLiteHelper.RULE_REPEATS,
+				  MySQLiteHelper.PUSH_NOTIFICATION,
+				  MySQLiteHelper.POPUP_TEXT };
 
 		  private static final String TAG = "AllMyDatabase";
 
@@ -31,13 +33,15 @@ public class RulesDataSource {
 		    dbHelper.close();
 		  }
 
-		  public RuleRow createRuleRow(String contactName, String contactNum, String ruleMessage, int rep)
+		  public RuleRow createRuleRow(String contactName, String contactNum, String ruleMessage, int rep, int pushNotification, int popupText)
 		  {
 			  ContentValues initialValues = new ContentValues();
 			  initialValues.put(MySQLiteHelper.CONTACT_NAME, contactName);
 			  initialValues.put(MySQLiteHelper.CONTACT_NUMBER, contactNum);
 			  initialValues.put(MySQLiteHelper.RULE_MESSAGE, ruleMessage);
 			  initialValues.put(MySQLiteHelper.RULE_REPEATS, Integer.valueOf(rep));
+			  initialValues.put(MySQLiteHelper.PUSH_NOTIFICATION, Integer.valueOf(pushNotification));
+			  initialValues.put(MySQLiteHelper.POPUP_TEXT, Integer.valueOf(popupText));
 			  ruleTable = dbHelper.getWritableDatabase();			  
 			  long insertId = ruleTable.insert(MySQLiteHelper.RULE_TABLE_NAME, null,
 					  initialValues );
@@ -73,7 +77,7 @@ public class RulesDataSource {
 		    cursor.close();
 		    return rules;
 		  }
-
+// TODO:
 		  private RuleRow cursorToRow(Cursor cursor) {
 		    RuleRow ruleRow = new RuleRow();
 		    try
@@ -82,7 +86,9 @@ public class RulesDataSource {
 		    	ruleRow.setRule(new Rule(cursor.getString(cursor.getColumnIndexOrThrow("CONTACT_NAME")),
 		    			cursor.getLong(cursor.getColumnIndexOrThrow("CONTACT_NUMBER")),
 		    			cursor.getString(cursor.getColumnIndexOrThrow("RULE_MESSAGE")),
-		    			cursor.getInt(cursor.getColumnIndexOrThrow("RULE_REPEATS"))
+		    			cursor.getInt(cursor.getColumnIndexOrThrow("RULE_REPEATS")),
+		    			cursor.getInt(cursor.getColumnIndexOrThrow("PUSH_NOTIFICATION")),
+		    			cursor.getInt(cursor.getColumnIndexOrThrow("POPUP_TEXT"))
 		    			));
 		    }
 		    catch(Exception e)

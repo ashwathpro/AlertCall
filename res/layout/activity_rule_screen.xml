@@ -14,13 +14,15 @@
     <ListView
         android:id="@+id/ruleList"
         android:layout_width="match_parent"
-        android:layout_height="456dp"
+        android:layout_height="0dp"
+        android:layout_weight="85"
         android:background="@drawable/ic_launcher" />
 
     <Button
         android:id="@+id/create_rule_button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
         android:onClick="createRule"
         android:text="@string/create_rule_button" />
 

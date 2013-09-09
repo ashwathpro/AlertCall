@@ -10,7 +10,7 @@ public class Rule {
 	
 	public Contact contactName;
 	public String reminderMessage;
-	public boolean recurrence;
+	public boolean recurrence, pushNotification, popupText;
 	public Date startTime, endTime;
 	
 	public Rule()
@@ -23,6 +23,8 @@ public class Rule {
 		contactName = name;
 		reminderMessage = msg;
 		recurrence = false;
+		pushNotification = true;
+		popupText = false;
 	}
 	/**
 	 * Constructor: takes contact name, phone number of contact and reminder message
@@ -35,6 +37,8 @@ public class Rule {
 		contactName = new Contact(name, num);
 		reminderMessage = msg;
 		recurrence = false;
+		pushNotification = true;
+		popupText = false;
 	}
 	/**
 	 * Constructor: takes contact name, phone number of contact and reminder message
@@ -48,6 +52,24 @@ public class Rule {
 		contactName = new Contact(name, num);
 		reminderMessage = msg;
 		recurrence = (rep == 1)?true:false;
+		pushNotification = true;
+		popupText = false;
+	}
+	
+	/**
+	 * Constructor: takes contact name, phone number of contact and reminder message
+	 * @param name contact name
+	 * @param num phone number 
+	 * @param msg reminder message
+	 * @param rep 1 if rule recurs 
+	 */
+	public Rule(String name, Long num,  String msg, int rep, int push, int popup)
+	{
+		contactName = new Contact(name, num);
+		reminderMessage = msg;
+		recurrence = (rep == 1)?true:false;
+		pushNotification = (push == 1)?true:false;
+		popupText = (popup == 1)?true:false;
 	}
 	
 	/**
@@ -62,6 +84,8 @@ public class Rule {
 		contactName = new Contact(name, num);
 		reminderMessage = msg;
 		recurrence = rep;
+		pushNotification = true;
+		popupText = false;
 	}
 	/**
 	 * converts a rule object to string 
@@ -69,7 +93,7 @@ public class Rule {
 	@Override 
 	public String toString()
 	{
-		return "When " + contactName.getName() + " calls me, remind me " + reminderMessage;
+		return "When I talk to " + contactName.getName() + ", remind me " + reminderMessage;
 	}
 	/**
 	 * Constructor: takes contact name, phone number of contact, reminder message and repeat flag parameter
@@ -83,7 +107,10 @@ public class Rule {
 		contactName = new Contact(name, num);
 		reminderMessage = msg;
 		recurrence = b;
+		pushNotification = true;
+		popupText = false;
 	}
+	
 	
 	public Rule(String name,  String msg)
 	{
@@ -91,5 +118,7 @@ public class Rule {
 		contactName = new Contact(name, a);
 		reminderMessage = msg;
 		recurrence = false;
+		pushNotification = true;
+		popupText = false;
 	}	
 }
