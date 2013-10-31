@@ -4,7 +4,6 @@
 package com.ashpro.alertcall;
 
 import java.util.ArrayList;
-import com.ashpro.alertcall.MainActivity;
 import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -19,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * Listens to the incoming phone call
@@ -40,7 +40,7 @@ public class IncomingCallListener extends BroadcastReceiver {
 	{
 
 	}
-
+	
 	public IncomingCallListener(Context c, NotificationManager n) {
 		this.cont = c;
 		// this.cont = new RuleScreenActivity();
@@ -97,15 +97,16 @@ public class IncomingCallListener extends BroadcastReceiver {
 				if(PhoneNumberUtils.compare(String.valueOf(RuleList.get(i).rule.contactName.number),incomingNumber))
 				{
 					//show both the reminders...  make it user configurable!!!!
-					// int toastDuration = Toast.LENGTH_SHORT;
 					toastText = RuleList.get(i).rule.reminderMessage;
-					// Toast reminderToast = Toast.makeText(context, toastText, toastDuration);
-					// reminderToast.show();
-
+					
 					// uncomment the following line to configure toast reminder as well
 					if(RuleList.get(i).rule.popupText)
 					{
-						MainActivity.makeToast(toastText);
+						// MainActivity is not present!!! 
+						// It will be killed if the app is removed from recent apps list
+						// MainActivity.makeToast(toastText);
+						Toast reminderToast = Toast.makeText(context, toastText, Toast.LENGTH_SHORT);
+						reminderToast.show();
 						Log.i(LOG_TAG, "Toast sent for " + incomingNumber);
 					}
 
@@ -164,4 +165,5 @@ public class IncomingCallListener extends BroadcastReceiver {
 			Log.i(LOG_TAG, "OFFHOOK" + intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER));
 		}
 	}
+
 }

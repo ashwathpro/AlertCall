@@ -10,6 +10,7 @@ import android.util.Log;
 public class RulesDataSource {
 	// Database fields
 		  private SQLiteDatabase ruleTable;
+		  public boolean isDbOpen;
 		  private MySQLiteHelper dbHelper;
 		  private String[] allColumns = { MySQLiteHelper.RULE_ID,
 				  MySQLiteHelper.CONTACT_NAME,
@@ -27,10 +28,12 @@ public class RulesDataSource {
 
 		  public void dbopen() throws SQLException {
 		    ruleTable = dbHelper.getWritableDatabase();
+		    isDbOpen = true;
 		  }
 
 		  public void dbclose() {
 		    dbHelper.close();
+		    isDbOpen = false;
 		  }
 
 		  public RuleRow createRuleRow(String contactName, String contactNum, String ruleMessage, int rep, int pushNotification, int popupText)

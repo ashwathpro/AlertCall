@@ -187,6 +187,14 @@ public class RuleScreenActivity extends MainActivity {
 		datasource.dbclose();
 		super.onPause();
 	}
+	
+	@Override
+	protected void onDestroy() {
+		Log.i("RuleScreenActivity", "RuleScreenActivity onDestroy called..");
+		// following line is not necessary as the onPause is always called before onDestroy 
+		// datasource.dbclose();
+		super.onDestroy();
+	}
 
 }
 
