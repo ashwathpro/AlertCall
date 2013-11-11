@@ -195,6 +195,5 @@ public class RuleScreenActivity extends MainActivity {
 		// datasource.dbclose();
 		super.onDestroy();
 	}
-
 }
 

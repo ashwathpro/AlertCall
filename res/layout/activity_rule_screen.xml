@@ -5,7 +5,7 @@
     android:background="#DDDDDD"
     android:orientation="vertical"
     tools:context=".CreateRuleActivity" >
-
+    
     <!--
          This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows.
