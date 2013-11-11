@@ -55,7 +55,7 @@ public class CreateRuleActivity extends MainActivity {
 	        return false;
 	    }
 	}
-
+	
 	/*
 	 * Get the text values of name and message and submit the results to its parent (RuleScreenActivity) 
 	 */
@@ -130,6 +130,83 @@ public class CreateRuleActivity extends MainActivity {
 		Log.i("CreateRule", "DB created rule!!");
 		finish();		
 	}
+	
+	
+	/*
+	 * Get the text values of name and message and submit the results to its parent (RuleScreenActivity) 
+	 */
+	public void submitRuleAction()
+	{
+		// get the rule's name and message from the edit text boxes
+		Intent returnIntent = new Intent();
+		
+		// check if text not empty
+		EditText ruleNameText = ((EditText)findViewById(R.id.ruleContactNameValue));
+		EditText ruleMessageText = ((EditText)findViewById(R.id.ruleMessageValue));
+		EditText ruleNumberText = ((EditText)findViewById(R.id.ruleContactNumberValue));
+		CheckBox checkRepeat = (CheckBox)findViewById(R.id.repeatCheckBox);
+		CheckBox notificationboxnotification_checkbox = (CheckBox)findViewById(R.id.notification_checkbox);
+		CheckBox text_checkbox = (CheckBox)findViewById(R.id.text_checkbox);
+		String ruleMessage = "",ruleContactName = "", ruleNumber = "";
+		boolean ruleRepeat = false;
+		boolean rulePop = false, rulePush = true;
+		String ruleNum = "";
+		
+		if(!isEmpty(ruleMessageText) && !isEmpty(ruleNumberText))
+		{	
+			ruleContactName = ruleNameText.getText().toString();
+			ruleMessage = ruleMessageText.getText().toString();
+			ruleNumber = ruleNumberText.getText().toString();
+			if(ruleNumber.charAt(0) == '+')
+            {
+            	Log.i("CreateRule", "Trimming number" + ruleNumber);
+            	// add try catch if phone number is just + 
+            	ruleNum = ruleNumber.substring(1);
+            	Log.i("CreateRule", "Trimmed number" + ruleNum);
+            }
+            else {
+            	ruleNum = ruleNumber;
+            }
+            // makeToast(phoneNum);
+            ruleRepeat = checkRepeat.isChecked();
+            // Log.i("CreateRule", "Rule checkbox: " + (ruleRepeat?"true":"false"));
+		}
+		else
+		{
+			makeToast("Contact number or message cannot be empty");
+			setResult(RESULT_CANCELED,returnIntent); 
+			return;
+		}
+		
+		rulePop = text_checkbox.isChecked();
+		rulePush = notificationboxnotification_checkbox.isChecked();
+		
+		if(rulePop || rulePush)
+		{	
+			ruleRepeat = checkRepeat.isChecked();
+            Log.i("CreateRule", "Rule rulePop: " + (rulePop?"true":"false" + "Rule rulePush: " + (rulePush?"true":"false")));
+		}
+		else
+		{
+			makeToast("Please select atleast one method of notification");
+			setResult(RESULT_CANCELED,returnIntent); 
+			return;
+		}
+		
+		// prepare the intent for returning the result
+		returnIntent.putExtra("ruleContactName",ruleContactName);
+		returnIntent.putExtra("ruleMessage",ruleMessage);
+		returnIntent.putExtra("ruleNumber",ruleNum);
+		returnIntent.putExtra("ruleRepeat",ruleRepeat);
+		returnIntent.putExtra("rulePush",rulePush);
+		returnIntent.putExtra("rulePop",rulePop);
+		setResult(RESULT_OK,returnIntent);     
+		// RuleListDbOpenHelper rdb = new RuleListDbOpenHelper(contextMainActivity);
+		// rdb.addRule(1, ruleContactName, ruleNum, ruleMessage, false);
+		Log.i("CreateRule", "DB created rule!!");
+		finish();		
+	}
+	
 	
 	/**
 	 * Picks contact using contact picker and populates the name & number edit text
@@ -210,6 +287,12 @@ public class CreateRuleActivity extends MainActivity {
 			//
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
+		case R.id.create_rule_submit_button:
+        	submitRuleAction();
+            return true;
+        case R.id.action_settings:
+            // do something for settings menu
+            return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}

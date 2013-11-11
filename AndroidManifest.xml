@@ -31,6 +31,7 @@
         <activity
             android:name="com.ashpro.alertcall.CreateRuleActivity"
             android:label="@string/title_activity_create_rule"
+            android:windowSoftInputMode="stateHidden|adjustUnspecified" 
             android:parentActivityName="com.ashpro.alertcall.RuleScreenActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -50,5 +51,16 @@
         </receiver>
         
     </application>
+    
+<supports-screens android:resizeable="true"
+                      android:smallScreens="true"
+                      android:normalScreens="true"
+                      android:largeScreens="true"
+                      android:xlargeScreens="false"
+                      android:anyDensity="true"
+                      />
 
+    
+
+    
 </manifest>

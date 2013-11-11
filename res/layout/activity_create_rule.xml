@@ -8,25 +8,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".CreateRuleActivity" >
-
-    <EditText
-        android:id="@+id/ruleMessageValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/ruleMessage"
-        android:layout_alignBottom="@+id/ruleMessage"
-        android:layout_alignLeft="@+id/ruleContactNameValue"
-        android:ems="10"
-        android:inputType="textMultiLine" />
-
-    <Button
-        android:id="@+id/create_rule_submit_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ruleContactNumber"
-        android:layout_alignParentBottom="true"
-        android:onClick="submitRule"
-        android:text="@string/add_rule_button" />
+	
+	<!-- android:background="#000000" -->
 
     <TextView
         android:id="@+id/ruleContactName"
@@ -36,26 +19,6 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="52dp"
         android:text="@string/rule_contact_name" />
-
-    <EditText
-        android:id="@+id/ruleContactNameValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/ruleContactName"
-        android:layout_alignBottom="@+id/ruleContactName"
-        android:layout_alignRight="@+id/create_rule_submit_button"
-        android:ems="10"
-        android:inputType="textPersonName" />
-
-    <TextView
-        android:id="@+id/ruleMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/repeatCheckBox"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="50dp"
-        android:layout_marginLeft="21dp"
-        android:text="@string/rule_message" />
 
     <TextView
         android:id="@+id/ruleContactNumber"
@@ -67,11 +30,25 @@
         android:text="@string/rule_phone_number" />
 
     <EditText
+        android:id="@+id/ruleContactNameValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/ruleContactName"
+        android:layout_alignBottom="@+id/ruleContactName"
+        android:layout_alignParentRight="true"
+        android:ems="10"
+        android:inputType="textPersonName" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
         android:id="@+id/ruleContactNumberValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/ruleContactNumber"
         android:layout_alignBottom="@+id/ruleContactNumber"
-        android:layout_alignRight="@+id/ruleContactNameValue"
+        android:layout_alignLeft="@+id/ruleContactNameValue"
         android:ems="10"
         android:inputType="phone" />
 
@@ -81,17 +58,35 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/ruleContactNumberValue"
         android:layout_below="@+id/ruleContactNumberValue"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="23dp"
         android:onClick="pickContact"
         android:text="@string/browse_button" />
+
+    <TextView
+        android:id="@+id/ruleMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/notification_checkbox"
+        android:layout_below="@+id/browseContact"
+        android:layout_marginTop="60dp"
+        android:text="@string/rule_message" />
+
+    <EditText
+        android:id="@+id/ruleMessageValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ruleMessage"
+        android:layout_alignRight="@+id/browseContact"
+        android:ems="10"
+        android:inputType="textMultiLine" />
 
     <CheckBox
         android:id="@+id/repeatCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/create_rule_submit_button"
-        android:layout_marginBottom="57dp"
-        android:layout_toRightOf="@+id/ruleMessage"
+        android:layout_alignRight="@+id/ruleMessageValue"
+        android:layout_below="@+id/ruleMessageValue"
+        android:layout_marginTop="26dp"
         android:checked="false"
         android:text="@string/repeat_check" />
 
@@ -99,9 +94,9 @@
         android:id="@+id/notification_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/create_rule_submit_button"
-        android:layout_alignLeft="@+id/create_rule_submit_button"
-        android:layout_marginBottom="14dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/repeatCheckBox"
+        android:layout_marginTop="28dp"
         android:checked="true"
         android:text="@string/notification" />
 
@@ -111,8 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/notification_checkbox"
         android:layout_alignBottom="@+id/notification_checkbox"
-        android:layout_alignRight="@+id/create_rule_submit_button"
-        android:layout_marginRight="40dp"
+        android:layout_alignLeft="@+id/repeatCheckBox"
         android:text="@string/text" />
 
 </RelativeLayout>

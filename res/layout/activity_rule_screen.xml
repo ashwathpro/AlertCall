@@ -7,6 +7,7 @@
     tools:context=".CreateRuleActivity" >
     
     <!--
+    android:background="#DDDDDD"
          This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows.
     -->
@@ -15,8 +16,9 @@
         android:id="@+id/ruleList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="85"
-        android:background="@drawable/ic_launcher" />
+        android:layout_weight="85"/>
+        <!-- android:background="@drawable/ic_launcher" --> 
+        
 
     <Button
         android:id="@+id/create_rule_button"
