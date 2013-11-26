@@ -14,6 +14,7 @@ import android.view.View.OnLongClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 /**
@@ -104,6 +105,10 @@ public class RuleScreenActivity extends MainActivity {
 	}
 
 	public void createRule(View view) {
+		ImageButton CreateButton = (ImageButton) findViewById(R.id.create_rule_button);
+		CreateButton.setBackgroundResource(R.drawable.add_rule_button_pressed);
+		CreateButton.setBackgroundResource(R.drawable.add_rule_button_1);
+		
 		Intent CreateRuleIntent = new Intent(this, CreateRuleActivity.class);
 		startActivityForResult(CreateRuleIntent, 1);
 	}

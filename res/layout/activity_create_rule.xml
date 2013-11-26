@@ -87,7 +87,7 @@
         android:layout_alignRight="@+id/ruleMessageValue"
         android:layout_below="@+id/ruleMessageValue"
         android:layout_marginTop="26dp"
-        android:checked="false"
+        android:checked="true"
         android:text="@string/repeat_check" />
 
     <CheckBox
@@ -107,6 +107,7 @@
         android:layout_alignBaseline="@+id/notification_checkbox"
         android:layout_alignBottom="@+id/notification_checkbox"
         android:layout_alignLeft="@+id/repeatCheckBox"
+        android:checked="true"
         android:text="@string/text" />
 
 </RelativeLayout>
